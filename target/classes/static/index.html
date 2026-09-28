@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>City Hospital Portal - Sign In</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body class="login-page">
+    <div class="shape shape-1"></div>
+    <div class="shape shape-2"></div>
+    <div class="shape shape-3"></div>
+
+    <div class="login-container">
+        <div class="brand">
+            <div class="brand-icon">H</div>
+            <h1>City Hospital Portal</h1>
+            <p>Select your role to sign in to your dashboard</p>
+        </div>
+
+        <div class="role-selector">
+            <button type="button" class="role-card selected" data-role="Doctor">
+                <span class="role-icon">🩺</span>
+                <span class="role-name">Doctor</span>
+            </button>
+            <button type="button" class="role-card" data-role="Patient">
+                <span class="role-icon">🧑‍⚕️</span>
+                <span class="role-name">Patient</span>
+            </button>
+            <button type="button" class="role-card" data-role="Receptionist">
+                <span class="role-icon">🖥️</span>
+                <span class="role-name">Receptionist</span>
+            </button>
+            <button type="button" class="role-card" data-role="Admin">
+                <span class="role-icon">🛡️</span>
+                <span class="role-name">Admin</span>
+            </button>
+        </div>
+
+        <div class="login-card">
+            <div class="login-heading">
+                <h2 id="loginHeading">Doctor Sign In</h2>
+                <p id="loginSubtitle">Access patient records, clinical notes and digital prescriptions</p>
+            </div>
+
+            <div class="divider"></div>
+
+            <form id="loginForm">
+                <div class="field">
+                    <label for="username">Username or Email</label>
+                    <input type="text" id="username" name="username" autocomplete="username"
+                           placeholder="Enter your username or email" required>
+                </div>
+                <div class="field">
+                    <label for="password">Password</label>
+                    <div class="password-wrap">
+                        <input type="password" id="password" name="password" autocomplete="current-password"
+                               placeholder="Enter your password" required>
+                        <button type="button" class="eye-btn" id="togglePassword" aria-label="Show password">
+                            <svg id="eyeIcon" width="20" height="20" viewBox="0 0 24 24" fill="none"
+                                 stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                <path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"></path>
+                                <circle cx="12" cy="12" r="3"></circle>
+                            </svg>
+                        </button>
+                    </div>
+                </div>
+
+                <div id="errorMsg" class="error-msg hidden"></div>
+
+                <button type="submit" class="btn-primary" id="submitBtn">
+                    <span id="submitText">Sign In as Doctor</span>
+                    <span class="arrow">→</span>
+                </button>
+            </form>
+        </div>
+
+        <p class="footer-text">© 2026 City Hospital. All rights reserved.</p>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>

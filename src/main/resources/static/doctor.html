@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Doctor Dashboard - City Hospital</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="app">
+        <aside class="sidebar">
+            <div class="sidebar-brand">
+                <div class="mini-icon">H</div>
+                <div><div class="brand-name">City Hospital</div><div class="brand-sub">Doctor Panel</div></div>
+            </div>
+            <div class="nav-item active" data-panel="dashboard"><span class="ic">📊</span> Dashboard</div>
+            <div class="nav-group">
+                <div class="nav-title">My Work</div>
+                <div class="nav-item" data-panel="profile"><span class="ic">🪪</span> My Profile</div>
+                <div class="nav-item" data-panel="availability"><span class="ic">🕒</span> Availability</div>
+                <div class="nav-item" data-panel="appointments"><span class="ic">📅</span> Appointments</div>
+                <div class="nav-item" data-panel="patients"><span class="ic">🧑‍🤝‍🧑</span> Assigned Patients</div>
+            </div>
+            <div class="nav-group">
+                <div class="nav-title">Clinical</div>
+                <div class="nav-item" data-panel="reports"><span class="ic">📄</span> Medical Reports</div>
+                <div class="nav-item" data-panel="prescriptions"><span class="ic">💊</span> Prescriptions</div>
+                <div class="nav-item" data-panel="consultations"><span class="ic">🗒️</span> Consultation Reports</div>
+            </div>
+            <div class="nav-group">
+                <div class="nav-title">Reviews</div>
+                <div class="nav-item" data-panel="feedback"><span class="ic">⭐</span> Ratings & Feedback</div>
+            </div>
+            <div class="nav-item logout" id="logoutBtn"><span class="ic">🚪</span> Logout</div>
+        </aside>
+
+        <main class="main">
+            <div class="topbar">
+                <h2>Doctor Dashboard</h2>
+                <div class="user-chip"><div class="avatar">D</div><div><div id="docName">Doctor</div><div class="role-tag">DOCTOR</div></div></div>
+            </div>
+
+            <section class="panel active" id="panel-dashboard">
+                <div class="stat-grid" id="statGrid"></div>
+                <div class="card"><h3>Today's Appointments</h3><div id="todayAppts"></div></div>
+            </section>
+
+            <section class="panel" id="panel-profile">
+                <div class="card"><div id="profileDetail"></div></div>
+                <div class="card">
+                    <div class="card-title"><h3>Change Password</h3></div>
+                    <div class="form-grid">
+                        <div class="form-group"><label>Current Password</label><input id="dcCurrent" type="password"></div>
+                        <div class="form-group"><label>New Password</label><input id="dcNew" type="password"></div>
+                        <div class="form-group"><label>Confirm New Password</label><input id="dcConfirm" type="password"></div>
+                    </div>
+                    <button class="btn btn-success" id="dcChangeBtn">Change Password</button>
+                </div>
+            </section>
+
+            <section class="panel" id="panel-availability">
+                <div class="card">
+                    <div class="card-title"><h3>Manage Availability</h3></div>
+                    <div class="form-grid">
+                        <div class="form-group"><label>Day</label><select id="avDay"><option>Monday</option><option>Tuesday</option><option>Wednesday</option><option>Thursday</option><option>Friday</option><option>Saturday</option><option>Sunday</option></select></div>
+                        <div class="form-group"><label>Start Time</label><input id="avStart" type="time"></div>
+                        <div class="form-group"><label>End Time</label><input id="avEnd" type="time"></div>
+                    </div>
+                    <div class="btn-row" style="margin-top:10px"><button class="btn btn-primary-2" id="addAvailSlot">Add Slot</button><button class="btn btn-danger" id="clearAvail">Clear Availability</button></div>
+                    <div id="availList" style="margin-top:16px"></div>
+                    <div class="btn-row" style="margin-top:12px"><button class="btn btn-success" id="saveAvail">Save Availability</button></div>
+                </div>
+            </section>
+
+            <section class="panel" id="panel-appointments">
+                <div class="card">
+                    <div class="card-title"><h3>My Appointments</h3></div>
+                    <div class="table-wrap"><table>
+                        <thead><tr><th>ID</th><th>Patient</th><th>Date</th><th>Time</th><th>Status</th><th>Reason</th><th>Action</th></tr></thead>
+                        <tbody id="docApptTable"></tbody>
+                    </table></div>
+                </div>
+            </section>
+
+            <section class="panel" id="panel-patients">
+                <div class="card">
+                    <div class="card-title"><h3>Assigned Patients</h3></div>
+                    <div class="table-wrap"><table>
+                        <thead><tr><th>ID</th><th>Name</th><th>Age</th><th>Gender</th><th>Blood</th><th>Phone</th></tr></thead>
+                        <tbody id="assignedPatients"></tbody>
+                    </table></div>
+                </div>
+            </section>
+
+            <section class="panel" id="panel-reports">
+                <div class="card">
+                    <div class="card-title"><h3>Patient Medical Reports</h3></div>
+                    <div class="form-group"><label>Select Patient</label><select id="reportPatient"></select></div>
+                    <div id="reportList"></div>
+                </div>
+            </section>
+
+            <section class="panel" id="panel-prescriptions">
+                <div class="card">
+                    <div class="card-title"><h3>Add Prescription</h3></div>
+                    <div class="form-group"><label>Patient</label><select id="rxPatient"></select></div>
+                    <div class="form-grid">
+                        <div class="form-group"><label>Medicine *</label><input id="rxMedicine"></div>
+                        <div class="form-group"><label>Dosage</label><input id="rxDosage"></div>
+                        <div class="form-group"><label>Frequency</label><input id="rxFrequency"></div>
+                        <div class="form-group"><label>Duration</label><input id="rxDuration"></div>
+                    </div>
+                    <div class="form-group"><label>Instructions</label><textarea id="rxInstructions"></textarea></div>
+                    <button class="btn btn-primary-2" id="addRxBtn">Add Prescription</button>
+                </div>
+                <div class="card">
+                    <div class="card-title"><h3>My Prescriptions</h3></div>
+                    <div id="rxList"></div>
+                </div>
+            </section>
+
+            <section class="panel" id="panel-consultations">
+                <div class="card">
+                    <div class="card-title"><h3>Add Consultation Report</h3></div>
+                    <div class="form-group"><label>Patient</label><select id="conPatient"></select></div>
+                    <div class="form-group"><label>Diagnosis *</label><input id="conDiagnosis"></div>
+                    <div class="form-group"><label>Consultation Details</label><textarea id="conDetails"></textarea></div>
+                    <div class="form-group"><label>Treatment</label><textarea id="conTreatment"></textarea></div>
+                    <div class="form-group"><label>Recommendations</label><textarea id="conRecommendations"></textarea></div>
+                    <button class="btn btn-primary-2" id="addConBtn">Add Consultation Report</button>
+                </div>
+                <div class="card">
+                    <div class="card-title"><h3>My Consultation Reports</h3></div>
+                    <div id="conList"></div>
+                </div>
+            </section>
+
+            <section class="panel" id="panel-feedback">
+                <div class="card">
+                    <div class="card-title"><h3>Ratings & Feedback</h3></div>
+                    <div id="feedbackList"></div>
+                </div>
+            </section>
+        </main>
+    </div>
+    <script src="script.js"></script>
+    <script src="doctor.js"></script>
+</body>
+</html>
